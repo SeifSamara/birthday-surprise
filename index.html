@@ -1,512 +1,393 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Birthday Surprise 💖 - Manonty's Special Day</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none; /* يجعل التجربة أنظف لكن النصوص قابلة للنسخ إذا احتاج */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حبيبتي ملاك - عيد ميلاد سعيد 💖</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: 'Segoe UI', 'Poppins', 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff9a9e);
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
+    body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Tajawal', 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff9a9e);
+        background-attachment: fixed;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden;
+    }
 
-        /* أنيميشن خلفية زهور متحركة بسيطة */
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
+    /* القلوب الطايرة في الخلفية */
+    .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
 
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            font-size: 24px;
-            opacity: 0.5;
-            animation: floatUp 8s linear infinite;
-            color: #fff9c4;
-        }
+    .heart {
+        position: absolute;
+        bottom: -50px;
+        font-size: 25px;
+        animation: floatUp linear infinite;
+        opacity: 0.6;
+    }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* العد التنازلي - Card جذاب */
-        .countdown-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border-radius: 70px;
-            padding: 30px 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
-            text-align: center;
-            z-index: 2;
-            transition: 0.3s;
-            margin: 20px;
-        }
-
-        #countdown {
-            font-size: 70px;
-            font-weight: bold;
-            letter-spacing: 5px;
-            text-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
-            font-family: monospace;
-            background: linear-gradient(45deg, #FFF9C4, #FFE0B5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: none;
-        }
-
-        .countdown-label {
-            font-size: 22px;
-            margin-top: 10px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.9;
-        }
-
-        /* المحتوى المخفي */
-        #content {
-            display: none;
-            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            max-width: 550px;
-            width: 90%;
-            background: rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(10px);
-            border-radius: 65px;
-            padding: 30px 25px 45px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
-            z-index: 2;
-            transition: all 0.2s;
-            margin: 20px;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin: 10px 0;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            word-break: keep-all;
-        }
-
-        /* الصورة بإطار لامع */
-        .image-frame {
-            display: inline-block;
-            border-radius: 45px;
-            background: linear-gradient(135deg, #ffdde1, #ffb7c5);
-            padding: 7px;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
-            margin: 20px auto;
-        }
-
-        img {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 40px;
-            display: block;
-            margin: 0 auto;
-            transition: transform 0.3s ease;
-        }
-
-        img:hover {
-            transform: scale(1.02);
-        }
-
-        .message-text {
-            font-size: 1.5rem;
-            font-weight: 500;
-            background: rgba(255, 245, 240, 0.2);
-            padding: 12px 18px;
-            border-radius: 60px;
-            display: inline-block;
-            margin: 15px 0;
-            backdrop-filter: blur(4px);
-        }
-
-        button {
-            padding: 14px 32px;
-            border: none;
-            border-radius: 50px;
-            background: #ff2e5c;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 5px 0 #990033;
-            margin-top: 10px;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        button:active {
-            transform: translateY(3px);
-            box-shadow: 0 2px 0 #990033;
-        }
-
-        button:hover {
-            background: #ff1a4f;
-            transform: scale(1.02);
-        }
-
-        .credit {
-            position: fixed;
-            bottom: 12px;
-            font-size: 12px;
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(0deg);
             opacity: 0.7;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 4px 12px;
-            border-radius: 40px;
-            pointer-events: none;
         }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
 
-        /* رسالة خاصة عند العد التنازلي */
-        .wait-message {
-            font-size: 18px;
-            margin-top: 16px;
-            font-weight: 400;
-            background: rgba(0, 0, 0, 0.3);
-            padding: 8px 16px;
-            border-radius: 50px;
-            display: inline-block;
-        }
+    /* صندوق العد التنازلي */
+    .countdown-box {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(15px);
+        border-radius: 70px;
+        padding: 40px 50px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+        z-index: 2;
+        text-align: center;
+    }
 
-        @media (max-width: 550px) {
-            #countdown {
-                font-size: 48px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .message-text {
-                font-size: 1.2rem;
-            }
-            button {
-                font-size: 18px;
-                padding: 10px 24px;
-            }
+    #countdown {
+        font-size: 100px;
+        font-weight: bold;
+        font-family: monospace;
+        background: linear-gradient(45deg, #FFF9C4, #FFE0B5);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 8px;
+    }
+
+    .countdown-label {
+        font-size: 22px;
+        margin-top: 15px;
+        font-weight: 500;
+    }
+
+    .wait-message {
+        font-size: 18px;
+        margin-top: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        padding: 8px 20px;
+        border-radius: 50px;
+        display: inline-block;
+    }
+
+    /* المحتوى اللي بيظهر بعد العداد */
+    #content {
+        display: none;
+        z-index: 2;
+        max-width: 600px;
+        width: 90%;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(15px);
+        border-radius: 50px;
+        padding: 35px 25px;
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
         }
-    </style>
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    img {
+        width: 220px;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        margin: 15px auto;
+        display: block;
+    }
+
+    h2 {
+        font-size: 28px;
+        margin: 15px 0 10px;
+        color: #fff5e6;
+    }
+
+    /* مكان كتابة الرسالة */
+    .message-area {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 30px;
+        padding: 20px;
+        margin: 20px 0;
+        text-align: right;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 150px;
+        padding: 15px;
+        font-size: 18px;
+        font-family: 'Tajawal', Arial;
+        border-radius: 25px;
+        border: 2px solid #ff4d6d;
+        background: #fffef7;
+        resize: vertical;
+        color: #333;
+        text-align: right;
+        line-height: 1.6;
+    }
+
+    textarea:focus {
+        outline: none;
+        border-color: #ff1a4f;
+        box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
+    }
+
+    .label-message {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #ff4d6d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .music-note {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 40px;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    @media (max-width: 550px) {
+        #countdown {
+            font-size: 65px;
+            letter-spacing: 4px;
+        }
+        .countdown-box {
+            padding: 25px 30px;
+        }
+        h2 {
+            font-size: 22px;
+        }
+        textarea {
+            font-size: 16px;
+        }
+    }
+</style>
 </head>
 <body>
 
 <div class="floating-hearts" id="heartsContainer"></div>
 
-<!-- مرحله العد التنازلي -->
-<div class="countdown-card" id="countdownWrapper">
-    <div id="countdown">23:59:59</div>
-    <div class="countdown-label">⏳ حتى اللحظة السعيدة ⏳</div>
-    <div class="wait-message">✨ قريباً .. مفاجأة تنتظرك ✨</div>
+<!-- العد التنازلي 10 ثواني -->
+<div class="countdown-box" id="countdownWrapper">
+    <div id="countdown">10</div>
+    <div class="countdown-label">⏳ ثواني وكل حاجة هتظهر ⏳</div>
+    <div class="wait-message">✨ استنى 10 ثواني وبعدين أكتب رسالتك ✨</div>
 </div>
 
+<!-- المحتوى اللي بيظهر بعد العداد -->
 <div id="content">
-    <h1>🎉 Happy Birthday ya manonty 🎉</h1>
-    <div class="image-frame">
-        <img src="https://i.imgur.com/4M7IWwP.png" alt="Birthday celebration cake and hearts" onerror="this.src='https://via.placeholder.com/280x280?text=❤️+Love+You+❤️'">
+    <div class="music-note">🎵 الأغنية هتشتغل تلقائياً دلوقتي 🎵</div>
+    <img src="IMG-20251201-WA0017.jpg" alt="حبيبتي ملاك" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1053/1053710.png'">
+    <h2>💕 يا حبيبتي ملاك 💕</h2>
+    
+    <div class="message-area">
+        <div class="label-message">
+            <span>✍️ أكتب رسالتك ليه هنا ✍️</span>
+        </div>
+        <textarea id="myMessage" placeholder="اكتب كلامك من قلبك... أنا بحبك جداً، كل سنة وانتي طيبة يا أجمل حاجة في حياتي..."></textarea>
     </div>
-    <div class="message-text">
-        💖 You are the best thing in my life 💖
-    </div>
-    <p style="font-size: 1.1rem; margin: 6px 0px;">كل سنة وأنتِ أجمل هدية في حياتي 🌸</p>
-    <button onclick="playMusic()" id="musicBtn">
-        🎶💖 Play Music 💖🎶
-    </button>
-    <p style="font-size: 12px; margin-top: 20px; opacity:0.8;">✨ أضغط على الزر لسماع أغنيتنا ✨</p>
+    <p style="font-size: 14px; opacity: 0.8;">💖 الرسالة دي حتكون خاصة بينك وبينها 💖</p>
 </div>
 
+<!-- iframe خفي للأغنية -->
 <iframe id="musicFrame" width="0" height="0" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
 <script>
-    // 🎈 إنشاء زخات قلوب عائمة احتفالية
+    // إنشاء قلوب متحركة في الخلفية
     function createFloatingHearts() {
         const container = document.getElementById('heartsContainer');
         if(!container) return;
+        
         setInterval(() => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            const icons = ['❤️', '💖', '💗', '💓', '🌸', '🎂', '✨', '🎈', '💕', '💘'];
+            const icons = ['❤️', '💖', '💗', '💓', '🌸', '🌹', '💕', '💘', '✨', '🫶', '💋', '🌟', '🎀', '💝'];
             heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            const size = Math.floor(Math.random() * 25) + 18;
+            const size = Math.floor(Math.random() * 28) + 18;
             heart.style.fontSize = size + 'px';
             heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = Math.random() * 5 + 5 + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.opacity = Math.random() * 0.6 + 0.3;
+            const duration = Math.random() * 6 + 4;
+            heart.style.animationDuration = duration + 's';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
             container.appendChild(heart);
+            
             setTimeout(() => {
                 heart.remove();
-            }, 8000);
-        }, 900);
+            }, duration * 1000);
+        }, 800);
     }
     createFloatingHearts();
-
-    // 📆 تاريخ مستهدف: منتصف الليل (الساعة 00:00 من اليوم التالي)
-    // لكن لجعل التجربة أفضل, نستخدم targetDate متغير: اليوم الحالي الساعة 23:59:59 إذا كان الوقت أقل من 12 ليلاً
-    // ولكن لكي يعمل الاختبار بسهولة في أي وقت، يمكن تعديله ليكون الـ "منتصف الليلة الحالية" أو منتصف الليلة القادمة إذا تجاوز الوقت 12.
-    // سنضيف منطق: إذا كان الوقت الحالي بعد 12 منتصف الليل مباشرة؟ نعني أن التاريخ يجب أن يكون منتصف ليلة اليوم نفسه إذا الساعة < 23:59:59
-    // بمعنى: الهدف هو الساعة 24:00 (00:00 من اليوم التالي). ولكن إذا كان الوقت الحالي بعد 00:00 فهو يُظهر المحتوى فوراً.
-    // لكن من الأجمل: نضع الزر لتجربة يدوية أيضاً: زر تجريبي سري، أو نكتفي بالعد التنازلي الحقيقي.
-    // سأحسن العد: target عند الساعة 23:59:59 من اليوم الحالي؟ لا بل 00:00 من اليوم التالي.
     
-    let countdownInterval;
-    let isUnlocked = false;
+    // العد التنازلي من 10 ثواني
+    let countdownSeconds = 10;
+    let isRevealed = false;
+    let musicPlayed = false;
     
-    // دالة لتحديث العد التنازلي حتى منتصف الليل القادم (بدقة)
-    function getNextMidnight() {
-        const now = new Date();
-        const midnight = new Date(now);
-        midnight.setHours(24, 0, 0, 0); // 00:00 من اليوم التالي
-        return midnight;
-    }
+    const countdownEl = document.getElementById('countdown');
+    const wrapper = document.getElementById('countdownWrapper');
+    const contentDiv = document.getElementById('content');
     
     function updateCountdown() {
-        const now = new Date();
-        const target = getNextMidnight();
-        const diff = target - now;
+        if(isRevealed) return;
         
-        // إذا انتهى الوقت أو أصبح diff <=0
-        if(diff <= 0) {
-            // إيقاف المؤقت وإظهار المحتوى
-            if(!isUnlocked) {
-                if(countdownInterval) clearInterval(countdownInterval);
-                const countdownDiv = document.getElementById('countdown');
-                const wrapper = document.getElementById('countdownWrapper');
-                const contentDiv = document.getElementById('content');
-                if(countdownDiv && wrapper && contentDiv) {
-                    wrapper.style.display = 'none';
-                    contentDiv.style.display = 'block';
-                    isUnlocked = true;
-                    
-                    // إضافة تأثير احتفالي سريع
-                    createConfettiEffect();
-                }
+        if(countdownSeconds <= 0) {
+            // انتهى العد التنازلي
+            isRevealed = true;
+            
+            // إخفاء العداد وإظهار المحتوى
+            if(wrapper && contentDiv) {
+                wrapper.style.display = 'none';
+                contentDiv.style.display = 'block';
             }
+            
+            // تشغيل الأغنية تلقائياً
+            if(!musicPlayed) {
+                playMusicAutomatically();
+                musicPlayed = true;
+            }
+            
+            // تأثير احتفالي
+            celebrateWithConfetti();
             return;
         }
         
-        // حساب الساعات والدقائق والثواني
-        const totalSeconds = Math.floor(diff / 1000);
-        const hours = Math.floor(totalSeconds / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-        
-        const formatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        const countdownElement = document.getElementById('countdown');
-        if(countdownElement) {
-            countdownElement.innerHTML = formatted;
+        // تحديث الرقم
+        if(countdownEl) {
+            countdownEl.innerHTML = countdownSeconds;
         }
+        countdownSeconds--;
     }
     
-    // دالة لتفعيل احتفال لحظي عند فتح المحتوى (كونفيتي)
-    function createConfettiEffect() {
-        // نضيف تأثير ألعاب نارية بسيطة باستخدام Canvas أو divs مؤقتة
-        const confettiContainer = document.createElement('div');
-        confettiContainer.style.position = 'fixed';
-        confettiContainer.style.top = '0';
-        confettiContainer.style.left = '0';
-        confettiContainer.style.width = '100%';
-        confettiContainer.style.height = '100%';
-        confettiContainer.style.pointerEvents = 'none';
-        confettiContainer.style.zIndex = '9999';
-        document.body.appendChild(confettiContainer);
-        
-        const colors = ['#FFD966', '#FF6B6B', '#FFB347', '#D96C6C', '#FF8DA1', '#C44569', '#FEA47F'];
-        for(let i=0; i<130; i++) {
-            const conf = document.createElement('div');
-            conf.style.position = 'absolute';
-            conf.style.width = Math.random() * 9 + 5 + 'px';
-            conf.style.height = Math.random() * 9 + 5 + 'px';
-            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
-            conf.style.left = Math.random() * 100 + '%';
-            conf.style.top = '-20px';
-            conf.style.opacity = Math.random() * 0.9 + 0.5;
-            conf.style.transform = `rotate(${Math.random() * 360}deg)`;
-            const duration = Math.random() * 2 + 1.5;
-            conf.style.transition = `transform ${duration}s linear, top ${duration}s ease-in`;
-            confettiContainer.appendChild(conf);
-            setTimeout(() => {
-                conf.style.top = '100vh';
-                conf.style.transform = `rotate(${Math.random() * 720}deg)`;
-            }, 20);
-        }
-        setTimeout(() => {
-            confettiContainer.remove();
-        }, 2800);
-        
-        // نطق تحية خفيفة غير مزعجة
-        console.log('Happy Birthday!');
-    }
-    
-    // إعداد المؤقت الفوري
-    countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown(); // تشغيل أول مرة
-    
-    // 🎵 تشغيل الموسيقى بشكل محسّن مع إمكانية الإيقاف والتكرار الهادئ 
-    // نمنع الأخطاء المتعلقة بـ autoplay policy بجعل iframe مخفي ويتم تشغيل الفيديو وضبطه على حلقة
-    function playMusic() {
+    // تشغيل أغنية "حبيبتي ملاك" لعمرو دياب تلقائياً
+    function playMusicAutomatically() {
         const musicFrame = document.getElementById('musicFrame');
         if(!musicFrame) return;
         
-        // الأغنية الشهيرة المناسبة لأجواء عيد ميلاد ذات مشاعر جميلة (يمكن تغيير الرابط)
-        // نستخدم رابط فيديو YouTube مع autoplay و loop و playlist لجعلها تتكرر بشكل لطيف
-        // الرابط: أغنية "Thinking Out Loud" او أغنية جميلة ولكن اخترت أغنية كلاسيكية سعيدة لمناسبة عيد ميلاد
-        // ولكن استخدمت الرابط القديم ليكون متوافقاً مع الذوق نفسه، سأستبدله بأغنية مشهورة رومانسية مناسبة
-        // لكن احترامًا للقالب السابق: سأترك الأغنية نفسها "Perfect" أو أغنية خاصة. استخدمت الرابط القديم "4k4YHc8cKjE" وهي أغنية "Ed Sheeran - Perfect" جميلة جداً
-        // ننظف المصدر السابق ونضبطه مع autoplay=1 & loop=1
-        const videoId = "4k4YHc8cKjE"; // Perfect - Ed Sheeran  (جميلة للمناسبات الرومانسية)
-        // إضافة معلمات extra: autoplay=1, loop=1, playlist مع نفس videoId للتكرار
-        musicFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&modestbranding=1`;
+        // معرف أغنية "حبيبتي ملاك" لعمرو دياب
+        const videoId = "8t9h8YWG_00";
+        musicFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&modestbranding=1&rel=0`;
         
-        // تغيير نص الزر لإظهار أنه يعمل
-        const btn = document.getElementById('musicBtn');
-        if(btn) {
-            btn.innerHTML = '🎶✨ Music Playing ✨🎶';
-            setTimeout(() => {
-                if(btn && document.getElementById('content').style.display === 'block') {
-                    btn.innerHTML = '💖🎵 Replay Music 🎵💖';
-                }
-            }, 2500);
-        }
-        
-        // إضافة إشعار عائم محبوب
-        const toastMsg = document.createElement('div');
-        toastMsg.innerText = '🎶 أتمنى أن تستمتع بهذه الهدية الموسيقية 💖';
-        toastMsg.style.position = 'fixed';
-        toastMsg.style.bottom = '70px';
-        toastMsg.style.left = '50%';
-        toastMsg.style.transform = 'translateX(-50%)';
-        toastMsg.style.backgroundColor = 'rgba(0,0,0,0.7)';
-        toastMsg.style.backdropFilter = 'blur(12px)';
-        toastMsg.style.padding = '10px 20px';
-        toastMsg.style.borderRadius = '60px';
-        toastMsg.style.color = 'white';
-        toastMsg.style.fontSize = '14px';
-        toastMsg.style.zIndex = '9999';
-        toastMsg.style.fontWeight = 'bold';
-        toastMsg.style.border = '1px solid rgba(255,255,200,0.5)';
-        document.body.appendChild(toastMsg);
-        setTimeout(() => { toastMsg.style.opacity = '0'; setTimeout(()=>toastMsg.remove(), 1000); }, 2200);
+        // إشعار للمستخدم
+        const toast = document.createElement('div');
+        toast.innerHTML = '🎶❤️ حبيبتي ملاك .. عمرو دياب شغالة دلوقتي ❤️🎶';
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = 'rgba(0,0,0,0.75)';
+        toast.style.backdropFilter = 'blur(12px)';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '60px';
+        toast.style.color = '#fff0c0';
+        toast.style.fontSize = '16px';
+        toast.style.zIndex = '9999';
+        toast.style.fontWeight = 'bold';
+        toast.style.border = '1px solid #ffb6c1';
+        toast.style.whiteSpace = 'nowrap';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 1000);
+        }, 4000);
     }
     
-    // التحقق من حالة تلقائية في حال أن الوقت تجاوز منتصف الليل بالفعل قبل تحميل الصفحة
-    window.addEventListener('load', function() {
-        // إذا كان الوقت الحالي بعد الساعة 00:00 (أي بعد منتصف الليل) وكان التاريخ الحالي ليس قبل الهدف
-        const nowCheck = new Date();
-        const targetCheck = getNextMidnight();
-        if(nowCheck >= targetCheck) {
-            // يعني أن الوقت الحالي مساوي أو بعد منتصف الليل، فيجب إظهار المحتوى فوراً
-            const wrapper = document.getElementById('countdownWrapper');
-            const contentDiv = document.getElementById('content');
-            if(wrapper && contentDiv && !isUnlocked) {
-                wrapper.style.display = 'none';
-                contentDiv.style.display = 'block';
-                isUnlocked = true;
-                if(countdownInterval) clearInterval(countdownInterval);
-                createConfettiEffect();
-            }
-        }
+    // تأثير احتفالي (ورود متطايرة)
+    function celebrateWithConfetti() {
+        const confContainer = document.createElement('div');
+        confContainer.style.position = 'fixed';
+        confContainer.style.top = '0';
+        confContainer.style.left = '0';
+        confContainer.style.width = '100%';
+        confContainer.style.height = '100%';
+        confContainer.style.pointerEvents = 'none';
+        confContainer.style.zIndex = '9998';
+        document.body.appendChild(confContainer);
         
-        // تحسين: إضافة تأثير سريع لزر زراعة الذكريات عند ظهور المحتوى 
-        // إضافة رسالة مخفية أخرى
-        
-        // تجربة إضافة شموع افتراضية بناءً على الساعة، إضافة لمسة جمال: نعرض نص مختلف إذا كان المحتوى ظاهرًا
-        const styleCheck = setInterval(() => {
-            const contentBlock = document.getElementById('content');
-            if(contentBlock && contentBlock.style.display === 'block') {
-                // إذا كان المحتوى معروضاً، نضيف تأثير وميض بسيط على العنوان
-                const title = contentBlock.querySelector('h1');
-                if(title && !title.hasAttribute('data-glint')) {
-                    title.setAttribute('data-glint', 'true');
-                    setInterval(() => {
-                        if(title) title.style.textShadow = '0 0 6px gold, 0 0 10px #ffb347';
-                        setTimeout(() => { if(title) title.style.textShadow = '2px 2px 5px rgba(0,0,0,0.3)'; }, 500);
-                    }, 1500);
-                }
-                clearInterval(styleCheck);
-            }
-        }, 300);
-    });
-    
-    // دعم إضافي: إذا أراد المستخدم تجربة سريعة (لأغراض العرض فقط) يمكننا إضافة اختبار 
-    // لكننا لا نضيف اختبارًا مزعجًا، ولكن يمكن للمطور إضافة Console فقط, ولا نعطل التجربة الرسمية.
-    // جعل الصورة تظهر بشكل جميل ومعالجة الخطأ في الصورة عبر onerror
-    document.addEventListener("DOMContentLoaded", function() {
-        const imgElement = document.querySelector('#content img');
-        if(imgElement) {
-            imgElement.onerror = function() {
-                this.src = "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif?cid=790b7611ixnruekfgpdy7jzzrsu7dyimqdw1xzpyazzdei7l&ep=v1_gifs_search&rid=giphy.gif&ct=g";
-                this.alt = "Love and happiness!";
-                this.style.borderRadius = "50%";
-            };
+        const colors = ['#FFB6C1', '#FFC0CB', '#FF69B4', '#FFA07A', '#FFDAB9', '#E6E6FA', '#FADADD', '#FFD700'];
+        for(let i = 0; i < 120; i++) {
+            const conf = document.createElement('div');
+            conf.style.position = 'absolute';
+            conf.style.width = Math.random() * 10 + 5 + 'px';
+            conf.style.height = Math.random() * 10 + 5 + 'px';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.borderRadius = Math.random() > 0.6 ? '50%' : '0%';
+            conf.style.left = Math.random() * 100 + '%';
+            conf.style.top = '-30px';
+            conf.style.opacity = Math.random() * 0.8 + 0.4;
+            conf.style.transform = `rotate(${Math.random() * 360}deg)`;
+            const duration = Math.random() * 2.5 + 1.5;
+            conf.style.transition = `transform ${duration}s linear, top ${duration}s ease-in`;
+            confContainer.appendChild(conf);
+            setTimeout(() => {
+                conf.style.top = '100vh';
+                conf.style.transform = `rotate(${Math.random() * 800}deg)`;
+            }, 20);
         }
-    });
+        setTimeout(() => {
+            confContainer.remove();
+        }, 2800);
+    }
     
-    // إضافة نسخة احتياطية لفتح الموسيقى دون مشاكل (ضبط iframe mute غير مطلوب)
-    // ننشئ عنصر iframe بشكل ديناميكي للتأكد من أن الزر يعيد تشغيل الموسيقى حتى لو فشلت السياسة
-    // لا يوجد مانع، أغلب المتصفحات تسمح بالتشغيل بناءً على تفاعل المستخدم (نقرة الزر)
-    // رائع
+    // بدء العد التنازلي (كل 1 ثانية)
+    const timer = setInterval(() => {
+        updateCountdown();
+        if(isRevealed) {
+            clearInterval(timer);
+        }
+    }, 1000);
     
-    // تحسين العد التنازلي لو أن الجهاز يعمل على مدار الساعة، نتجنب إعادة إنشاء المؤقتات
-    window.addEventListener('beforeunload', ()=>{
-        if(countdownInterval) clearInterval(countdownInterval);
-    });
-    
-    // زر مخفي سحري (لبيئة العرض) ولكن ليس ضرورياً
-    // جماليًا سأضيف تأثير موسيقي عند الضغط على الصورة اختياري
-    const addImageClickEffect = function() {
-        const imgDiv = document.querySelector('.image-frame');
-        if(imgDiv) {
-            imgDiv.addEventListener('click', () => {
-                const btn = document.getElementById('musicBtn');
-                if(btn && document.getElementById('content').style.display === 'block') {
-                    btn.style.transform = 'scale(1.05)';
-                    setTimeout(()=>{ btn.style.transform = ''; }, 200);
-                    if(document.getElementById('musicFrame').src === '') playMusic();
-                    else {
-                        // إعادة تشغيل
-                        const frame = document.getElementById('musicFrame');
+    // حفظ الرسالة اللي يكتبها المستخدم في الـ textarea (تخزين تلقائي)
+    const savedMessage = localStorage.getItem('loveMessage');
+    const textarea = document.getElementById('myMessage');
+    if(savedMessage && textarea) {
+        textarea.value = savedMessage;
+    }
+    if(textarea) {
+        textarea.addEventListener('input', function() {
+            localStorage.setItem('loveMessage', this.value);
+        });
+    }
+</script>
+
+</body>
+</html>
