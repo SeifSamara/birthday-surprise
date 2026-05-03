@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حبيبتي ملاك - عيد ميلاد سعيد 💖</title>
+<title>حبيبتي ملاك - Happy Birthday 💖</title>
 <style>
     * {
         margin: 0;
@@ -18,7 +18,7 @@
         align-items: center;
         flex-direction: column;
         font-family: 'Tajawal', 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3, #ff9a9e);
+        background: linear-gradient(135deg, #2b1b3a, #1a1a2e, #16213e);
         background-attachment: fixed;
         color: white;
         text-align: center;
@@ -27,8 +27,8 @@
         overflow-x: hidden;
     }
 
-    /* القلوب الطايرة في الخلفية */
-    .floating-hearts {
+    /* خلفية الكونفيتي المتحركة */
+    .confetti-bg {
         position: fixed;
         top: 0;
         left: 0;
@@ -39,18 +39,50 @@
         overflow: hidden;
     }
 
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f0f;
+        top: -20px;
+        animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0.3;
+        }
+    }
+
+    /* القلوب الطايرة */
+    .floating-hearts {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+    }
+
     .heart {
         position: absolute;
         bottom: -50px;
         font-size: 25px;
         animation: floatUp linear infinite;
-        opacity: 0.6;
+        opacity: 0.7;
     }
 
     @keyframes floatUp {
         0% {
             transform: translateY(0) rotate(0deg);
-            opacity: 0.7;
+            opacity: 0.8;
         }
         100% {
             transform: translateY(-100vh) rotate(360deg);
@@ -60,36 +92,39 @@
 
     /* صندوق العد التنازلي */
     .countdown-box {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
         border-radius: 70px;
-        padding: 40px 50px;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 2px rgba(255, 255, 255, 0.3) inset;
+        padding: 50px 60px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.2) inset;
         z-index: 2;
         text-align: center;
+        border: 1px solid rgba(255,255,200,0.3);
     }
 
     #countdown {
-        font-size: 100px;
+        font-size: 110px;
         font-weight: bold;
         font-family: monospace;
-        background: linear-gradient(45deg, #FFF9C4, #FFE0B5);
+        background: linear-gradient(45deg, #FFD700, #FFA500, #FF69B4);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
         letter-spacing: 8px;
+        text-shadow: 0 0 20px rgba(255,215,0,0.5);
     }
 
     .countdown-label {
-        font-size: 22px;
+        font-size: 24px;
         margin-top: 15px;
         font-weight: 500;
+        color: #FFE4B5;
     }
 
     .wait-message {
         font-size: 18px;
         margin-top: 20px;
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
         padding: 8px 20px;
         border-radius: 50px;
         display: inline-block;
@@ -99,13 +134,13 @@
     #content {
         display: none;
         z-index: 2;
-        max-width: 600px;
+        max-width: 550px;
         width: 90%;
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(15px);
-        border-radius: 50px;
-        padding: 35px 25px;
-        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(20px);
+        border-radius: 60px;
+        padding: 45px 30px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,200,0.3);
         animation: fadeInUp 1s ease-out;
     }
 
@@ -123,116 +158,140 @@
     img {
         width: 220px;
         border-radius: 50%;
-        border: 4px solid white;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        border: 4px solid #FFD700;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin: 15px auto;
         display: block;
     }
 
     h2 {
-        font-size: 28px;
-        margin: 15px 0 10px;
-        color: #fff5e6;
+        font-size: 32px;
+        margin: 15px 0;
+        color: #FFD700;
+        text-shadow: 0 0 10px #ff69b4;
     }
 
-    /* مكان كتابة الرسالة */
-    .message-area {
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 30px;
-        padding: 20px;
+    .special-message {
+        background: linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,105,180,0.2));
+        border-radius: 40px;
+        padding: 25px 20px;
         margin: 20px 0;
-        text-align: right;
+        border: 1px solid rgba(255,215,0,0.5);
+        text-align: center;
     }
 
-    textarea {
-        width: 100%;
-        min-height: 150px;
-        padding: 15px;
-        font-size: 18px;
-        font-family: 'Tajawal', Arial;
-        border-radius: 25px;
-        border: 2px solid #ff4d6d;
-        background: #fffef7;
-        resize: vertical;
-        color: #333;
-        text-align: right;
+    .special-message p {
+        font-size: 22px;
         line-height: 1.6;
+        color: #fff5e6;
+        font-weight: 500;
     }
 
-    textarea:focus {
-        outline: none;
-        border-color: #ff1a4f;
-        box-shadow: 0 0 10px rgba(255, 77, 109, 0.5);
-    }
-
-    .label-message {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #ff4d6d;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
+    .special-message .quote {
+        font-size: 28px;
+        margin-top: 10px;
+        color: #FFD700;
     }
 
     .music-note {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 215, 0, 0.2);
         padding: 8px 15px;
         border-radius: 40px;
         font-size: 14px;
         display: inline-block;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        color: #FFD700;
     }
 
     @media (max-width: 550px) {
         #countdown {
-            font-size: 65px;
+            font-size: 70px;
             letter-spacing: 4px;
         }
         .countdown-box {
-            padding: 25px 30px;
+            padding: 30px 35px;
         }
         h2 {
-            font-size: 22px;
+            font-size: 26px;
         }
-        textarea {
-            font-size: 16px;
+        .special-message p {
+            font-size: 18px;
+        }
+        .special-message .quote {
+            font-size: 22px;
         }
     }
 </style>
 </head>
 <body>
 
+<!-- خلفية كونفيتي متحركة -->
+<div class="confetti-bg" id="confettiBg"></div>
+
+<!-- قلوب طايرة -->
 <div class="floating-hearts" id="heartsContainer"></div>
 
 <!-- العد التنازلي 10 ثواني -->
 <div class="countdown-box" id="countdownWrapper">
     <div id="countdown">10</div>
-    <div class="countdown-label">⏳ ثواني وكل حاجة هتظهر ⏳</div>
-    <div class="wait-message">✨ استنى 10 ثواني وبعدين أكتب رسالتك ✨</div>
+    <div class="countdown-label">⏳ انتظر 10 ثواني فقط ⏳</div>
+    <div class="wait-message">✨ حبيبتي ملاك في انتظارك ✨</div>
 </div>
 
 <!-- المحتوى اللي بيظهر بعد العداد -->
 <div id="content">
-    <div class="music-note">🎵 الأغنية هتشتغل تلقائياً دلوقتي 🎵</div>
-    <img src="IMG-20251201-WA0017.jpg" alt="حبيبتي ملاك" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1053/1053710.png'">
+    <div class="music-note">🎵❤️ حبيبتي ملاك لعمرو دياب شغالة دلوقتي ❤️🎵</div>
+    <img src="https://i.imgur.com/4M7IWwP.png" alt="حبيبتي ملاك" onerror="this.src='https://cdn-icons-png.flaticon.com/512/1053/1053710.png'">
     <h2>💕 يا حبيبتي ملاك 💕</h2>
     
-    <div class="message-area">
-        <div class="label-message">
-            <span>✍️ أكتب رسالتك ليه هنا ✍️</span>
-        </div>
-        <textarea id="myMessage" placeholder="اكتب كلامك من قلبك... أنا بحبك جداً، كل سنة وانتي طيبة يا أجمل حاجة في حياتي..."></textarea>
+    <div class="special-message">
+        <p>✨ كل سنة وأنتي أجمل حاجة في حياتي ✨</p>
+        <p>💖 أنتي نور عيني وسبب ضحكتي 💖</p>
+        <p>🌸 وجودك في حياتي هو أحلى هدية 🌸</p>
+        <div class="quote">"حبيبتي ملاك .. قمر جميل .. ده كلام جميل"</div>
+        <p style="font-size:18px; margin-top:15px;">🫶 بحبك أكثر من أي حاجة في الدنيا 🫶</p>
     </div>
-    <p style="font-size: 14px; opacity: 0.8;">💖 الرسالة دي حتكون خاصة بينك وبينها 💖</p>
 </div>
 
 <!-- iframe خفي للأغنية -->
 <iframe id="musicFrame" width="0" height="0" frameborder="0" allow="autoplay" style="display:none;"></iframe>
 
 <script>
-    // إنشاء قلوب متحركة في الخلفية
+    // === خلفية الكونفيتي الملونة ===
+    function createConfetti() {
+        const container = document.getElementById('confettiBg');
+        if(!container) return;
+        
+        const colors = ['#FF69B4', '#FFD700', '#FFA500', '#00CED1', '#FF4500', '#9400D3', '#32CD32', '#FF1493', '#1E90FF', '#FF6347'];
+        
+        function addConfetti() {
+            const conf = document.createElement('div');
+            conf.classList.add('confetti');
+            const size = Math.floor(Math.random() * 12) + 6;
+            conf.style.width = size + 'px';
+            conf.style.height = size + 'px';
+            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            conf.style.borderRadius = Math.random() > 0.5 ? '50%' : '0%';
+            conf.style.left = Math.random() * 100 + '%';
+            const duration = Math.random() * 3 + 2;
+            conf.style.animationDuration = duration + 's';
+            conf.style.animationDelay = Math.random() * 2 + 's';
+            container.appendChild(conf);
+            
+            setTimeout(() => {
+                conf.remove();
+            }, duration * 1000);
+        }
+        
+        setInterval(() => {
+            for(let i = 0; i < 8; i++) {
+                addConfetti();
+            }
+        }, 300);
+    }
+    createConfetti();
+    
+    // === قلوب متحركة في الخلفية ===
     function createFloatingHearts() {
         const container = document.getElementById('heartsContainer');
         if(!container) return;
@@ -240,12 +299,12 @@
         setInterval(() => {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            const icons = ['❤️', '💖', '💗', '💓', '🌸', '🌹', '💕', '💘', '✨', '🫶', '💋', '🌟', '🎀', '💝'];
+            const icons = ['❤️', '💖', '💗', '💓', '🌸', '🌹', '💕', '💘', '✨', '🫶', '💋', '🌟', '🎀', '💝', '🌺'];
             heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-            const size = Math.floor(Math.random() * 28) + 18;
+            const size = Math.floor(Math.random() * 32) + 20;
             heart.style.fontSize = size + 'px';
             heart.style.left = Math.random() * 100 + '%';
-            const duration = Math.random() * 6 + 4;
+            const duration = Math.random() * 7 + 5;
             heart.style.animationDuration = duration + 's';
             heart.style.animationDelay = Math.random() * 3 + 's';
             heart.style.opacity = Math.random() * 0.7 + 0.3;
@@ -254,11 +313,11 @@
             setTimeout(() => {
                 heart.remove();
             }, duration * 1000);
-        }, 800);
+        }, 600);
     }
     createFloatingHearts();
     
-    // العد التنازلي من 10 ثواني
+    // === العد التنازلي من 10 ثواني ===
     let countdownSeconds = 10;
     let isRevealed = false;
     let musicPlayed = false;
@@ -271,104 +330,61 @@
         if(isRevealed) return;
         
         if(countdownSeconds <= 0) {
-            // انتهى العد التنازلي
             isRevealed = true;
             
-            // إخفاء العداد وإظهار المحتوى
             if(wrapper && contentDiv) {
                 wrapper.style.display = 'none';
                 contentDiv.style.display = 'block';
             }
             
-            // تشغيل الأغنية تلقائياً
             if(!musicPlayed) {
                 playMusicAutomatically();
                 musicPlayed = true;
             }
-            
-            // تأثير احتفالي
-            celebrateWithConfetti();
             return;
         }
         
-        // تحديث الرقم
         if(countdownEl) {
             countdownEl.innerHTML = countdownSeconds;
         }
         countdownSeconds--;
     }
     
-    // تشغيل أغنية "حبيبتي ملاك" لعمرو دياب تلقائياً
+    // === تشغيل أغنية "حبيبتي ملاك" لعمرو دياب ===
     function playMusicAutomatically() {
         const musicFrame = document.getElementById('musicFrame');
         if(!musicFrame) return;
         
-        // معرف أغنية "حبيبتي ملاك" لعمرو دياب
+        // رابط أغنية "حبيبتي ملاك" لعمرو دياب - رابط صحيح يعمل
         const videoId = "8t9h8YWG_00";
         musicFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&playlist=${videoId}&controls=0&disablekb=1&modestbranding=1&rel=0`;
         
-        // إشعار للمستخدم
+        // إشعار ظهور الأغنية
         const toast = document.createElement('div');
         toast.innerHTML = '🎶❤️ حبيبتي ملاك .. عمرو دياب شغالة دلوقتي ❤️🎶';
         toast.style.position = 'fixed';
         toast.style.bottom = '30px';
         toast.style.left = '50%';
         toast.style.transform = 'translateX(-50%)';
-        toast.style.backgroundColor = 'rgba(0,0,0,0.75)';
+        toast.style.backgroundColor = 'rgba(0,0,0,0.8)';
         toast.style.backdropFilter = 'blur(12px)';
         toast.style.padding = '12px 24px';
         toast.style.borderRadius = '60px';
-        toast.style.color = '#fff0c0';
+        toast.style.color = '#FFD700';
         toast.style.fontSize = '16px';
         toast.style.zIndex = '9999';
         toast.style.fontWeight = 'bold';
-        toast.style.border = '1px solid #ffb6c1';
+        toast.style.border = '1px solid #FF69B4';
         toast.style.whiteSpace = 'nowrap';
+        toast.style.fontFamily = 'Arial';
         document.body.appendChild(toast);
         setTimeout(() => {
             toast.style.opacity = '0';
             setTimeout(() => toast.remove(), 1000);
-        }, 4000);
+        }, 4500);
     }
     
-    // تأثير احتفالي (ورود متطايرة)
-    function celebrateWithConfetti() {
-        const confContainer = document.createElement('div');
-        confContainer.style.position = 'fixed';
-        confContainer.style.top = '0';
-        confContainer.style.left = '0';
-        confContainer.style.width = '100%';
-        confContainer.style.height = '100%';
-        confContainer.style.pointerEvents = 'none';
-        confContainer.style.zIndex = '9998';
-        document.body.appendChild(confContainer);
-        
-        const colors = ['#FFB6C1', '#FFC0CB', '#FF69B4', '#FFA07A', '#FFDAB9', '#E6E6FA', '#FADADD', '#FFD700'];
-        for(let i = 0; i < 120; i++) {
-            const conf = document.createElement('div');
-            conf.style.position = 'absolute';
-            conf.style.width = Math.random() * 10 + 5 + 'px';
-            conf.style.height = Math.random() * 10 + 5 + 'px';
-            conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            conf.style.borderRadius = Math.random() > 0.6 ? '50%' : '0%';
-            conf.style.left = Math.random() * 100 + '%';
-            conf.style.top = '-30px';
-            conf.style.opacity = Math.random() * 0.8 + 0.4;
-            conf.style.transform = `rotate(${Math.random() * 360}deg)`;
-            const duration = Math.random() * 2.5 + 1.5;
-            conf.style.transition = `transform ${duration}s linear, top ${duration}s ease-in`;
-            confContainer.appendChild(conf);
-            setTimeout(() => {
-                conf.style.top = '100vh';
-                conf.style.transform = `rotate(${Math.random() * 800}deg)`;
-            }, 20);
-        }
-        setTimeout(() => {
-            confContainer.remove();
-        }, 2800);
-    }
-    
-    // بدء العد التنازلي (كل 1 ثانية)
+    // بدء العد التنازلي
     const timer = setInterval(() => {
         updateCountdown();
         if(isRevealed) {
@@ -376,17 +392,12 @@
         }
     }, 1000);
     
-    // حفظ الرسالة اللي يكتبها المستخدم في الـ textarea (تخزين تلقائي)
-    const savedMessage = localStorage.getItem('loveMessage');
-    const textarea = document.getElementById('myMessage');
-    if(savedMessage && textarea) {
-        textarea.value = savedMessage;
-    }
-    if(textarea) {
-        textarea.addEventListener('input', function() {
-            localStorage.setItem('loveMessage', this.value);
-        });
-    }
+    // لو الصفحة اتحملت بعد الوقت خلاص
+    window.addEventListener('load', function() {
+        if(countdownSeconds <= 0 && !isRevealed) {
+            updateCountdown();
+        }
+    });
 </script>
 
 </body>
